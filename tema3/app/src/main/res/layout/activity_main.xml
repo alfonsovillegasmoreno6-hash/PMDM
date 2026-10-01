@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/boton_continuar"
+        app:backgroundTint="@color/verde_continuar"
         app:layout_constraintEnd_toStartOf="@id/btnCancelar"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/boton_cancelar"
+        app:backgroundTint="@color/rojo_cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnContinuar"
         app:layout_constraintTop_toTopOf="@id/btnContinuar" />
