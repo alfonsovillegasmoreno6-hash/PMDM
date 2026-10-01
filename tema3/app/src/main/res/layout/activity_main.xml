@@ -20,6 +20,7 @@
 
     <Button
         android:id="@+id/btnContinuar"
+        style="@style/BotonTarea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -32,8 +33,10 @@
 
     <Button
         android:id="@+id/btnCancelar"
+        style="@style/BotonTarea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:text="@string/boton_cancelar"
         app:backgroundTint="@color/rojo_cancelar"
         app:layout_constraintEnd_toEndOf="parent"

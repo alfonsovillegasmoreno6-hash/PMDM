@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.ParteB" parent="Base.Theme.ParteB" />
+
+    <style name="BotonTarea" parent="Widget.Material3.Button">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>
