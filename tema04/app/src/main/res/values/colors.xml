@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="red">#FF000000</color>
-    <color name="yellow">#FFFFFFFF</color>
+    <color name="franja_1">#009688</color>
+    <color name="franja_2">#DE0E16</color>
+
+    <color name="franja_3">#2E7D32</color>
+    <color name="franja_4">#8E24AA</color>
+    <color name="franja_5">#F57C00</color>
+    <color name="bloque_a">#1565C0</color>
+    <color name="bloque_b">#FFEB3B</color>
 </resources>
