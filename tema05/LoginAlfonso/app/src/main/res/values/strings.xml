@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LoginAlfonso</string>
+    <string name="correo_label">Correo electrónico</string>
+    <string name="pass_label">Contraseña</string>
+    <string name="correo_hint">alfonso.villegas@davante.org</string>
+    <string name="pass_hint">1234</string>
+    <string name="recordar">Recordar contraseña</string>
+    <string name="continuar">Continuar</string>
 </resources>
