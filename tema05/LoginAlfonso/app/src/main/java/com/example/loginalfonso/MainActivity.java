@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String CORREO_VALIDO = "alfonso@correo.com";
     private static final String PASS_VALIDA = "1234";
+
+    private int intentosFallidos = 0; // EXTRA
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +44,19 @@ public class MainActivity extends AppCompatActivity {
             String correo = cajaTextoCorreo.getText().toString();
             String pass = cajaTextoPass.getText().toString();
 
-            // Compara con equals, nunca con ==
+            // 1.4: campos vacíos
+            if (correo.isEmpty() || pass.isEmpty()) {
+                if (correo.isEmpty()) {
+                    cajaTextoCorreo.setError(getString(R.string.error_correo_vacio));
+                }
+                if (pass.isEmpty()) {
+                    cajaTextoPass.setError(getString(R.string.error_pass_vacia));
+                }
+                return;
+            }
+
             if (correo.equals(CORREO_VALIDO) && pass.equals(PASS_VALIDA)) {
+                intentosFallidos = 0; // EXTRA
                 if (swRecordar.isChecked()) {
                     tvMensaje.setText(R.string.mensaje_ok_recordar);
                 } else {
@@ -50,7 +64,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.verde));
             } else {
-                tvMensaje.setText(R.string.mensaje_error);
+                intentosFallidos++; // EXTRA
+                if (intentosFallidos >= 3) { // EXTRA
+                    btnContinuar.setEnabled(false);
+                    tvMensaje.setText(R.string.demasiados_intentos);
+                    Toast.makeText(this, R.string.demasiados_intentos, Toast.LENGTH_SHORT).show();
+                } else {
+                    tvMensaje.setText(R.string.mensaje_error);
+                }
                 tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.rojo));
             }
         });
