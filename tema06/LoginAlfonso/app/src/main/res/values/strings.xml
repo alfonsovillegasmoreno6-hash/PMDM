@@ -4,7 +4,7 @@
     <string name="pass_label">Contraseña</string>
     <string name="correo_hint">Introduce tu correo</string>
     <string name="pass_hint">Introduce tu contraseña</string>
-    <string name="recordar">Recordar contraseña</string>
+    <string name="recordar">Recordar correo</string>
     <string name="continuar">Continuar</string>
 
     <string name="mensaje_ok">Usuario y contraseña correctos</string>

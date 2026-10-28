@@ -1,6 +1,7 @@
 package com.example.loginalfonso;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     private int intentosFallidos = 0; // EXTRA
 
+    private SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
         Button btnContinuar = findViewById(R.id.btnContinuar);
         TextView tvMensaje = findViewById(R.id.tvMensaje);
 
+        // 2: preferencias y correo recordado
+        prefs = getSharedPreferences("sesion", MODE_PRIVATE);
+        String guardado = prefs.getString("correo", "");
+        if (!guardado.isEmpty()) {
+            cajaTextoCorreo.setText(guardado);
+            swRecordar.setChecked(true);
+            cajaTextoPass.requestFocus();
+        }
+
         btnContinuar.setOnClickListener(v -> {
             String correo = cajaTextoCorreo.getText().toString();
             String pass = cajaTextoPass.getText().toString();
@@ -59,6 +71,13 @@ public class MainActivity extends AppCompatActivity {
 
             if (correo.equals(CORREO_VALIDO) && pass.equals(PASS_VALIDA)) {
                 intentosFallidos = 0; // EXTRA
+
+                // 2: guardar o borrar el correo (la contraseña nunca se guarda)
+                if (swRecordar.isChecked()) {
+                    prefs.edit().putString("correo", correo).apply();
+                } else {
+                    prefs.edit().remove("correo").apply();
+                }
 
                 // 1.2: abrir el menú con el correo y cerrar el login
                 Intent intent = new Intent(MainActivity.this, MenuActivity.class);
