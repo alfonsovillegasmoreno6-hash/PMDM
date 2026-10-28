@@ -13,4 +13,10 @@
     <string name="error_correo_vacio">Escribe tu correo</string>
     <string name="error_pass_vacia">Escribe la contraseña</string>
     <string name="demasiados_intentos">Demasiados intentos</string>
+
+    <string name="menu_titulo">Menú principal</string>
+    <string name="menu_saludo">Hola, diego@correo.com</string>
+    <string name="menu_cerrar_sesion">Cerrar sesión</string>
+
+    <string name="menu_saludo_correo">Hola, %1$s</string>
 </resources>
