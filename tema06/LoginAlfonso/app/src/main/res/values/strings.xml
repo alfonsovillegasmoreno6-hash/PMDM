@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">LoginAlfonso</string>
+    <string name="correo_label">Correo electrónico</string>
+    <string name="pass_label">Contraseña</string>
+    <string name="correo_hint">Introduce tu correo</string>
+    <string name="pass_hint">Introduce tu contraseña</string>
+    <string name="recordar">Recordar contraseña</string>
+    <string name="continuar">Continuar</string>
+
+    <string name="mensaje_ok">Usuario y contraseña correctos</string>
+    <string name="mensaje_ok_recordar">Usuario y contraseña correctos. Almacenados para siguientes accesos</string>
+    <string name="mensaje_error">Usuario y/o contraseña incorrectos</string>
+    <string name="error_correo_vacio">Escribe tu correo</string>
+    <string name="error_pass_vacia">Escribe la contraseña</string>
+    <string name="demasiados_intentos">Demasiados intentos</string>
+</resources>
