@@ -1,5 +1,6 @@
 package com.example.loginalfonso;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -57,12 +59,12 @@ public class MainActivity extends AppCompatActivity {
 
             if (correo.equals(CORREO_VALIDO) && pass.equals(PASS_VALIDA)) {
                 intentosFallidos = 0; // EXTRA
-                if (swRecordar.isChecked()) {
-                    tvMensaje.setText(R.string.mensaje_ok_recordar);
-                } else {
-                    tvMensaje.setText(R.string.mensaje_ok);
-                }
-                tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.verde));
+
+                // 1.2: abrir el menú con el correo y cerrar el login
+                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                intent.putExtra(MenuActivity.EXTRA_CORREO, correo);
+                startActivity(intent);
+                finish();
             } else {
                 intentosFallidos++; // EXTRA
                 if (intentosFallidos >= 3) { // EXTRA
