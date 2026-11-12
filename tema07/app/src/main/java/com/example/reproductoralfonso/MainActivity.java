@@ -104,7 +104,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    // 1.4 · Ciclo de vida
+    @Override
+    protected void onStart() {
+        super.onStart();
+        handler.removeCallbacks(actualizar);
         handler.post(actualizar);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        player.pause();
+        handler.removeCallbacks(actualizar);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(actualizar);
+        player.release();
     }
 
     private String formatear(long milisegundos) {
