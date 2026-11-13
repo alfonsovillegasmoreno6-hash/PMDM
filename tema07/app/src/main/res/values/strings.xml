@@ -4,4 +4,9 @@
     <string name="tiempo_inicial">00:00</string>
     <string name="boton_play">Play</string>
     <string name="boton_pausa">Pausa</string>
+    <string name="titulo_efectos">Efectos de sonido</string>
+    <string name="efecto_1">fortnite</string>
+    <string name="efecto_2">amongus</string>
+    <string name="efecto_3">bobesponja</string>
+    <string name="efecto_4">samsung</string>
 </resources>

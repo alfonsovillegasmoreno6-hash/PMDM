@@ -1,5 +1,7 @@
 package com.example.reproductoralfonso;
 
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvTiempoActual, tvDuracion;
     private final Handler handler = new Handler(Looper.getMainLooper());
     private Runnable actualizar;
+
+    // 2 · Efectos de sonido
+    private SoundPool soundPool;
+    private final int[] idsSonido = new int[4];
+    private int cargados = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +111,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        // 2 · Efectos de sonido con SoundPool
+        Button[] botones = {
+                findViewById(R.id.btnEfecto1),
+                findViewById(R.id.btnEfecto2),
+                findViewById(R.id.btnEfecto3),
+                findViewById(R.id.btnEfecto4)
+        };
+
+        AudioAttributes atributos = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(4)
+                .setAudioAttributes(atributos)
+                .build();
+
+        // Los botones se activan cuando los 4 sonidos están cargados
+        soundPool.setOnLoadCompleteListener((sp, sampleId, status) -> {
+            if (status == 0) {
+                cargados++;
+                if (cargados == 4) {
+                    for (Button b : botones) {
+                        b.setEnabled(true);
+                    }
+                }
+            }
+        });
+
+        idsSonido[0] = soundPool.load(this, R.raw.fortnite, 1);
+        idsSonido[1] = soundPool.load(this, R.raw.amongus, 1);
+        idsSonido[2] = soundPool.load(this, R.raw.bobesponja, 1);
+        idsSonido[3] = soundPool.load(this, R.raw.samsung, 1);
+
+        for (int i = 0; i < botones.length; i++) {
+            final int indice = i;
+            botones[i].setOnClickListener(v ->
+                    soundPool.play(idsSonido[indice], 1f, 1f, 1, 0, 1f));
+        }
     }
 
     // 1.4 · Ciclo de vida
@@ -126,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         handler.removeCallbacks(actualizar);
         player.release();
+        soundPool.release();
     }
 
     private String formatear(long milisegundos) {
